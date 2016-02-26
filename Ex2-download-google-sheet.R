@@ -59,7 +59,7 @@ readGoogleSheet <- function(url, na.string="", header=TRUE){
 
 #We start by setting the gdoc variable, which is the URL to the sheet that we want to read. In this case it's the great spreadsheet kept by @NEPD_Loyko - anything you print based on this sheet should credit him just as a matter of being a good net citizen.
 
-gdoc <- "https://docs.google.com/spreadsheets/d/1MhmzWDgIqCIoYL0K1c8MG43W1djmSw5trl5-oJfe24Q/edit#gid=1732996324"
+gdoc <- "https://docs.google.com/spreadsheets/d/1MhmzWDgIqCIoYL0K1c8MG43W1djmSw5trl5-oJfe24Q/edit#gid=169831712"
 
 #We'll just call the 2nd function we defined by passing the gdoc value to the function.
 
@@ -67,11 +67,11 @@ combineList <- readGoogleSheet(gdoc)
 
 #If you look to the right you'll see that calling that function created a nested list of 9. Each item in that list represents one of the tables in the Google Doc. Now we can turn whichever table we want to look at into a data frame by calling the cleanGoogleTable function we defined. We'll specify the 2nd table and then call it rbTbl.
 
-rbTbl <- cleanGoogleTable(elem, table=2)
+rbTbl <- cleanGoogleTable(combineList, table=2)
 
 #Maybe the first thing we want to do is drop columns that we don't need. We can do that by subsetting the data frame using its index properties. This line just redefines the data frame as being only columns 2 through 7.
 
-rbTbl <- rbTbl[,2:7]
+rbTbl <- rbTbl[,2:18]
 
 #Now we have some numeric columns that need to be transformed in order to be able to run any calculations on them. The height column uses the crazy combine format of FeetInchesEighths. So let's pull that into its component parts using some regular expressions. Regex is a powerful way to parse strings. We'll use the stringr package which you may need to install. Note that you can always install a package in RStudio by using the packages tab in the lower right.
 
@@ -95,7 +95,7 @@ rbTbl$EIGHTHS <- str_extract(rbTbl$Height,"[0-9]{1}$")
 
 #Now we have three columns where we've done some string extraction to parse out the combine's height measurement. But the data is still in string or character format. So we'll use the sapply function to iterate over the 7:9 columns and apply the as.numeric function.
 
-rbTbl[7:9] <- sapply(rbTbl[7:9],as.numeric)
+rbTbl[18:20] <- sapply(rbTbl[18:20],as.numeric)
 
 #Now we can calculate the players' heights in inches by referring to each column by the dataFrame$column convention. 
 
@@ -108,10 +108,6 @@ rbTbl$Weight <- as.numeric(rbTbl$Weight)
 #This line just calculates the players' BMI. If we wanted to get rid of lots of decimal places we could wrap this function in a round()
 
 rbTbl$BMI <- rbTbl$Weight*703/(rbTbl$Height^2)
-
-#I've created some columns to parse out the player heights but I don't need these columns any more. This is just personal preference but I like to get rid of those unnecesary columns by subsetting the dataframe. I just pass it a list of columns I want to keep.
-
-rbTbl <- rbTbl[,c(1:6,10)]
 
 #Both the arm length and the hand length can be parsed by pulling out the whole numbers, as well as the numerator and denominator of the fractions. This line extracts the first occurence of number characters until it runs into a non-numeric character. The + operator just tells it to keep going and not stop at any set number. That's because some hand lengths are single digits and some players have hands that are 10 inches.
 
@@ -145,6 +141,19 @@ rbTbl$Arm[is.na(rbTbl$NUM)] <- rbTbl$WHOLE[is.na(rbTbl$NUM)]
 
 rbTbl$Arm[!is.na(rbTbl$NUM)] <- rbTbl$WHOLE[!is.na(rbTbl$NUM)] + (rbTbl$NUM[!is.na(rbTbl$NUM)]/rbTbl$DENOM[!is.na(rbTbl$NUM)])
 
-#Now we can clean up our data frame again by re-defining the data frame as only the columns we want to keep, which are columns 1:7.
+#Now we might want to calculate some speed scores. First we need to make sure that the forty yard dash column is named such that it will be easy to refer back to it. The colnames function should be familiar by now. Note that we could have named all columns before we started, and when you know exactly what you want to do that's easiest. I'm more making this up as I go.
 
-rbTbl <- rbTbl[,1:7]
+colnames(rbTbl)[7] <- "FORTY.FIRST"
+
+#Then we just make sure it's in numeric format. Again, if you know which columns you'll be working with ahead of time the easiest thing to do is to convert all of them to numeric in a sapply call at once.
+
+rbTbl$FORTY.FIRST <- as.numeric(rbTbl$FORTY.FIRST)
+
+#This is the formula for speed score.
+
+rbTbl$SPEED <- round(rbTbl$Weight*200 / (rbTbl$FORTY.FIRST^4),0)
+
+#If I wanted just a table of weight, forty and speed score I can subset the columns using a named list. The column names need to be quoted.
+
+ssTbl <- rbTbl[,c("Name","Weight","FORTY.FIRST","SPEED")]
+
