@@ -1,75 +1,15 @@
-# this exercise requires two functions that I'm not going to explain because honestly I haven't even gone through them. All I know is that they work because I copied them from this page http://blog.revolutionanalytics.com/2014/06/reading-data-from-the-new-version-of-google-spreadsheets.html and tested them. That's its own lesson - often the thing you're trying to do has already been done by someone smarter than you who has also taken the time to post the code online.
+#In this exercise we'll download some data from a google sheet. In order to do that we'll have to authenticate through a google account which takes place in a browser.
 
-library(XML)
+#load the needed libraries.
 
-#Below is a function. You need to run every line of the code in order to define the function and load the function into your R environment so that you can use it later.
+library(googlesheets)
+library(dplyr)
 
-cleanGoogleTable <- function(dat, table=1, skip=0, ncols=NA, nrows=-1, header=TRUE, dropFirstCol=NA){
-  if(!is.data.frame(dat)){
-    dat <- dat[[table]]
-  }
-  if(is.na(dropFirstCol)) {
-    firstCol <- na.omit(dat[[1]])
-    if(all(firstCol == ".") || all(firstCol== as.character(seq_along(firstCol)))) {
-      dat <- dat[, -1]
-    }
-  } else if(dropFirstCol) {
-    dat <- dat[, -1]
-  }
-  if(skip > 0){
-    dat <- dat[-seq_len(skip), ]
-  }
-  if(nrow(dat) == 1) return(dat)
-  if(nrow(dat) >= 2){
-    if(all(is.na(dat[2, ]))) dat <- dat[-2, ]
-  }
-  if(header && nrow(dat) > 1){
-    header <- as.character(dat[1, ])
-    names(dat) <- header
-    dat <- dat[-1, ]
-  }
-  # Keep only desired columns
-  if(!is.na(ncols)){
-    ncols <- min(ncols, ncol(dat))
-    dat <- dat[, seq_len(ncols)]
-  }
-  # Keep only desired rows
-  if(nrows > 0){
-    nrows <- min(nrows, nrow(dat))
-    dat <- dat[seq_len(nrows), ]
-  }
-  # Rename rows
-  rownames(dat) <- seq_len(nrow(dat))
-  dat
-}
+#Thanks to Kevin Cole for pointing out the googlesheets package and offering this bit of code to pull in the Google sheet. This relies on dplyr for passing the objects through a pipe (%>%) which we'll discuss more later. gs_read(ws = 2) says that we want the 2nd google sheet. Note that you may be redirected to your browser to provide Google Authentication.
 
-#this is the second function
+rbTbl <- gs_url("https://docs.google.com/spreadsheets/d/1MhmzWDgIqCIoYL0K1c8MG43W1djmSw5trl5-oJfe24Q/") %>% gs_read(ws = 2)
 
-readGoogleSheet <- function(url, na.string="", header=TRUE){
-  stopifnot(require(XML))
-  # Suppress warnings because Google docs seems to have incomplete final line
-  suppressWarnings({
-    doc <- paste(readLines(url), collapse=" ")
-  })
-  if(nchar(doc) == 0) stop("No content found")
-  htmlTable <- gsub("^.*?(<table.*</table).*$", "\\1>", doc)
-  ret <- readHTMLTable(htmlTable, header=header, stringsAsFactors=FALSE, as.data.frame=TRUE)
-  lapply(ret, function(x){ x[ x == na.string] <- NA; x})
-}
-
-#We start by setting the gdoc variable, which is the URL to the sheet that we want to read. In this case it's the great spreadsheet kept by @NEPD_Loyko - anything you print based on this sheet should credit him just as a matter of being a good net citizen.
-
-gdoc <- "https://docs.google.com/spreadsheets/d/1MhmzWDgIqCIoYL0K1c8MG43W1djmSw5trl5-oJfe24Q/edit#gid=169831712"
-
-#We'll just call the 2nd function we defined by passing the gdoc value to the function.
-
-combineList <- readGoogleSheet(gdoc)
-
-#If you look to the right you'll see that calling that function created a nested list of 9. Each item in that list represents one of the tables in the Google Doc. Now we can turn whichever table we want to look at into a data frame by calling the cleanGoogleTable function we defined. We'll specify the 2nd table and then call it rbTbl.
-
-rbTbl <- cleanGoogleTable(combineList, table=2)
-
-#Maybe the first thing we want to do is drop columns that we don't need. We can do that by subsetting the data frame using its index properties. This line just redefines the data frame as being only columns 2 through 7.
+#Maybe the first thing we want to do is drop columns that we don't need. We can do that by subsetting the data frame using its index properties. This line just redefines the data frame as being only columns 2 through 18.
 
 rbTbl <- rbTbl[,2:18]
 
@@ -93,7 +33,7 @@ rbTbl$INCHES <- str_extract(rbTbl$Height,"[0-9]{2}")
 
 rbTbl$EIGHTHS <- str_extract(rbTbl$Height,"[0-9]{1}$")
 
-#Now we have three columns where we've done some string extraction to parse out the combine's height measurement. But the data is still in string or character format. So we'll use the sapply function to iterate over the 7:9 columns and apply the as.numeric function.
+#Now we have three columns where we've done some string extraction to parse out the combine's height measurement. But the data is still in string or character format. So we'll use the sapply function to iterate over the 18:20 columns and apply the as.numeric function.
 
 rbTbl[18:20] <- sapply(rbTbl[18:20],as.numeric)
 
