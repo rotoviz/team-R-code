@@ -1,0 +1,261 @@
+gid,seas,wk,day,v,h,stad,temp,humd,wspd,wdir,cond,surf,ou,sprv,ptsv,ptsh
+3990,2015,1,THU,PIT,NE,Gillette Stadium,65,93,9,NNE,Cloudy,FieldTurf,51,7,21,28
+3991,2015,1,SUN,GB,CHI,Soldier Field,68,39,11,WNW,Mostly Sunny,Grass,49,-6.5,31,23
+3992,2015,1,SUN,KC,HOU,NRG Stadium,,,,,Closed Roof,Grass,41,1,27,20
+3993,2015,1,SUN,CLE,NYJ,MetLife Stadium,77,49,8,SW,Cloudy,FieldTurf,39.5,3.5,10,31
+3994,2015,1,SUN,IND,BUF,Ralph Wilson Stadium,56,78,15,W,Cloudy,A Turf Titan,45,-2.5,14,27
+3995,2015,1,SUN,MIA,WAS,FedEx Field,69,58,10,NW,Partly Cloudy,Grass,43,-3.5,17,10
+3996,2015,1,SUN,CAR,JAC,EverBank Field,77,55,7,N,Chance Rain,Grass,41,-3,20,9
+3997,2015,1,SUN,SEA,STL,Edward Jones Dome,,,,,Dome,AstroTurf,40.5,-4,31,34
+3998,2015,1,SUN,NO,ARI,University of Phoenix Stadium,,,,,Closed Roof,Grass,48.5,2.5,19,31
+3999,2015,1,SUN,DET,SD,Qualcomm Stadium,84,47,10,WSW,Sunny,Grass,46,3,28,34
+4000,2015,1,SUN,TEN,TB,Raymond James Stadium,84,66,8,NNE,Cloudy,Grass,41,3,42,14
+4001,2015,1,SUN,CIN,OAK,O.co Coliseum,73,59,9,WNW,Cloudy,Grass,43,-3,33,13
+4002,2015,1,SUN,BAL,DEN,Sports Authority Field at Mile High,88,8,13,NW,Partly Sunny,Grass,48,4.5,13,19
+4003,2015,1,SN,NYG,DAL,AT&T Stadium,,,,,Closed Roof,AstroTurf,51.5,6,26,27
+4004,2015,1,MN,PHI,ATL,Georgia Dome,,,,,Dome,AstroTurf,55,-3,24,26
+4005,2015,1,MN,MIN,SF,Levi's Stadium,70,63,5,S,Partly Cloudy,Grass,41.5,-2.5,3,20
+4006,2015,2,THU,DEN,KC,Arrowhead Stadium,87,59,13,S,Cloudy,Grass,42,3,31,24
+4007,2015,2,SUN,HOU,CAR,Bank of America Stadium,88,43,6,NE,Sunny,Grass,39.5,3,17,24
+4008,2015,2,SUN,SF,PIT,Heinz Field,66,60,10,NNE,Partly Cloudy,Grass,45.5,6.5,18,43
+4009,2015,2,SUN,TB,NO,Mercedes-Benz Superdome,,,,,Dome,UBU Speed Series S5M,47.5,10,26,19
+4010,2015,2,SUN,DET,MIN,TCF Bank Stadium,67,,,,Partly Cloudy,FieldTurf,43.5,2,16,26
+4011,2015,2,SUN,ARI,CHI,Soldier Field,70,47,6,S,Mostly Sunny,Grass,46,-2,48,23
+4012,2015,2,SUN,NE,BUF,Ralph Wilson Stadium,62,57,7,N,Sunny,A Turf Titan,44,-1,40,32
+4013,2015,2,SUN,SD,CIN,Paul Brown Stadium,69,47,6,NE,Partly Cloudy,UBU Sports Speed S5M,47,3,19,24
+4014,2015,2,SUN,TEN,CLE,FirstEnergy Stadium,64,59,12,NE,Sunny,Grass,41.5,-2,14,28
+4015,2015,2,SUN,ATL,NYG,MetLife Stadium,73,47,9,N,Mostly Cloudy,UBU Speed Series S5M,51,2.5,24,20
+4016,2015,2,SUN,STL,WAS,FedEx Field,72,56,9,N,Cloudy,Grass,41,-3,10,24
+4017,2015,2,SUN,MIA,JAC,EverBank Field,87,55,5,E,Partly Cloudy,Grass,41.5,-5.5,20,23
+4018,2015,2,SUN,BAL,OAK,O.co Coliseum,80,32,8,WNW,Sunny,Grass,42.5,-6.5,33,37
+4019,2015,2,SUN,DAL,PHI,Lincoln Financial Field,77,37,15,NNE,Partly Cloudy,Grass,55,5,20,10
+4020,2015,2,SN,SEA,GB,Lambeau Field,62,52,9,SE,Clear,DD GrassMaster,49,3.5,17,27
+4021,2015,2,MN,NYJ,IND,Lucas Oil Stadium,,,,,Closed Roof,AstroTurf,46.5,7,20,7
+4022,2015,3,THU,WAS,NYG,MetLife Stadium,71,60,4,SSW,Clear,UBU Speed Series S5M,45,3,21,32
+4023,2015,3,SUN,ATL,DAL,AT&T Stadium,,,,,Closed Roof,AstroTurf,44,-1,39,28
+4024,2015,3,SUN,IND,TEN,LP Field,74,77,3,ENE,Cloudy,Grass,46,-3,35,33
+4025,2015,3,SUN,OAK,CLE,FirstEnergy Stadium,75,62,16,SSE,Cloudy,Grass,42.5,3.5,27,20
+4026,2015,3,SUN,CIN,BAL,M&T Bank Stadium,70,20,12,ENE,Cloudy,MomentumTurf,44.5,2.5,28,24
+4027,2015,3,SUN,JAC,NE,Gillette Stadium,68,41,6,E,Clear,FieldTurf,48,13.5,17,51
+4028,2015,3,SUN,NO,CAR,Bank of America Stadium,69,90,9,NNE,Rain,Grass,42.5,8,22,27
+4029,2015,3,SUN,PHI,NYJ,MetLife Stadium,66,52,7,E,Clear,FieldTurf,46,2,24,17
+4030,2015,3,SUN,TB,HOU,NRG Stadium,,,,,Closed Roof,Grass,40.5,6.5,9,19
+4031,2015,3,SUN,SD,MIN,TCF Bank Stadium,75,,12,S,Sunny,FieldTurf,44.5,2.5,14,31
+4032,2015,3,SUN,PIT,STL,Edward Jones Dome,,,,,Dome,AstroTurf,48,-1,12,6
+4033,2015,3,SUN,SF,ARI,University of Phoenix Stadium,,,,,Closed Roof,Grass,44.5,6.5,7,47
+4034,2015,3,SUN,BUF,MIA,Sun Life Stadium,87,65,6,SE,Cloudy,Grass,41.5,3,41,14
+4035,2015,3,SUN,CHI,SEA,CenturyLink Field,60,53,5,NE,Sunny,FieldTurf,43.5,14.5,0,26
+4036,2015,3,SN,DEN,DET,Ford Field,,,,,Dome,FieldTurf,44.5,-3,24,12
+4037,2015,3,MN,KC,GB,Lambeau Field,67,93,5,N,Light Rain,DD GrassMaster,49,6.5,28,38
+4038,2015,4,THU,BAL,PIT,Heinz Field,63,62,8,ENE,Cloudy,Grass,44,-3,23,20
+4039,2015,4,SUN,NYJ,MIA,Sun Life Stadium,59,63,5,SSE,Sunny,Grass,42,-1.5,27,14
+4040,2015,4,SUN,JAC,IND,Lucas Oil Stadium,,,,,Closed Roof,AstroTurf,48,9,13,16
+4041,2015,4,SUN,NYG,BUF,Ralph Wilson Stadium,60,66,8,E,Mostly Cloudy,A Turf Titan,46,5,24,10
+4042,2015,4,SUN,CAR,TB,Raymond James Stadium,74,92,5,NE,Cloudy,Grass,39.5,-3,37,24
+4043,2015,4,SUN,PHI,WAS,FedEx Field,58,82,13,NE,Cloudy,Grass,43.5,-3,20,23
+4044,2015,4,SUN,OAK,CHI,Soldier Field,55,83,12,NE,Cloudy,Grass,44.5,-3,20,22
+4045,2015,4,SUN,HOU,ATL,Georgia Dome,,,,,Dome,AstroTurf,46.5,6.5,21,48
+4046,2015,4,SUN,KC,CIN,Paul Brown Stadium,68,64,5,E,Sunny,UBU Speed Series S5M,45,4,21,36
+4047,2015,4,SUN,CLE,SD,Qualcomm Stadium,68,78,11,WNW,Cloudy,Grass,44.5,7,27,30
+4048,2015,4,SUN,GB,SF,Levi's Stadium,74,36,5,SE,Sunny,Grass,48,-8,17,6
+4049,2015,4,SUN,STL,ARI,University of Phoenix Stadium,,,,,Closed Roof,Grass,42.5,7,24,22
+4050,2015,4,SUN,MIN,DEN,Sports Authority Field at Mile High,60,57,9,NE,Cloudy,Grass,43,7,20,23
+4051,2015,4,SN,DAL,NO,Mercedes-Benz Superdome,,,,,Dome,UBU Speed Series S5M,47,3,20,26
+4052,2015,4,MN,DET,SEA,CenturyLink Field,74,41,8,N,Sunny,FieldTurf,43,10,10,13
+4053,2015,5,THU,IND,HOU,NRG Stadium,,,,,Closed Roof,Grass,46,-3,27,20
+4054,2015,5,SUN,CHI,KC,Arrowhead Stadium,72,51,10,SSW,Sunny,Grass,45,9,18,17
+4055,2015,5,SUN,SEA,CIN,Paul Brown Stadium,66,59,3,SW,Sunny,UBU Speed Series S5M,43,3,24,27
+4056,2015,5,SUN,WAS,ATL,Georgia Dome,,,,,Dome,AstroTurf,48,7,19,25
+4057,2015,5,SUN,JAC,TB,Raymond James Stadium,84,55,9,NW,Clear,Grass,42,3,31,38
+4058,2015,5,SUN,NO,PHI,Lincoln Financial Field,67,54,6,SW,Clear,Grass,49,5,17,40
+4059,2015,5,SUN,CLE,BAL,M&T Bank Stadium,65,48,2,SSW,Mostly Sunny,MomentumTurf,43,6.5,33,30
+4060,2015,5,SUN,STL,GB,Lambeau Field,67,61,15,SW,Clear,DD GrassMaster,45.5,9,10,24
+4061,2015,5,SUN,BUF,TEN,LP Field,67,58,5,NNE,Sunny,Grass,42,-1,14,13
+4062,2015,5,SUN,ARI,DET,Ford Field,,,,,Dome,FieldTurf,44.5,-3,42,17
+4063,2015,5,SUN,NE,DAL,AT&T Stadium,,,,,Closed Roof,AstroTurf,49.5,-8.5,30,6
+4064,2015,5,SUN,DEN,OAK,O.co Coliseum,72,59,10,,Sunny,Grass,43.5,-4.5,16,10
+4065,2015,5,SN,SF,NYG,MetLife Stadium,61,59,4,SSW,Clear,UBU Speed Series S5M,43,7,27,30
+4066,2015,5,MN,PIT,SD,Qualcomm Stadium,93,32,10,WNW,Partly Cloudy,Grass,45.5,3,24,20
+4067,2015,6,THU,ATL,NO,Mercedes-Benz Superdome,,,,,Dome,UBU Speed Series S5M,51,-3,21,31
+4068,2015,6,SUN,WAS,NYJ,MetLife Stadium,49,30,16,WNW,Clear,FieldTurf,40.5,7,20,34
+4069,2015,6,SUN,ARI,PIT,Heinz Field,45,47,12,W,Partly Cloudy,Grass,44.5,-3.5,13,25
+4070,2015,6,SUN,KC,MIN,TCF Bank Stadium,54,0,10,SSW,Sunny,FieldTurf,43,3.5,10,16
+4071,2015,6,SUN,CIN,BUF,Ralph Wilson Stadium,40,73,4,NE,Cloudy,A Turf Titan,42.5,-3,34,21
+4072,2015,6,SUN,CHI,DET,Ford Field,,,,,Dome,FieldTurf,44,3,34,37
+4073,2015,6,SUN,DEN,CLE,FirstEnergy Stadium,47,52,20,NW,Sunny,Grass,42.5,-4,26,23
+4074,2015,6,SUN,HOU,JAC,EverBank Field,73,55,18,NE,Clear,Grass,43,1,31,21
+4075,2015,6,SUN,MIA,TEN,LP Field,56,39,8,S,Sunny,Grass,43.5,1,38,10
+4076,2015,6,SUN,CAR,SEA,CenturyLink Field,61,85,SSE,5,Cloudy,FieldTurf,41,7,27,23
+4077,2015,6,SUN,SD,GB,Lambeau Field,54,35,12,S,Clear,DD GrassMaster,50.5,10.5,20,27
+4078,2015,6,SUN,BAL,SF,Levi's Stadium,69,60,7,N,Partly Sunny,Grass,43.5,-2,20,25
+4079,2015,6,SN,NE,IND,Lucas Oil Stadium,,,,,Closed Roof,AstroTurf,54.5,-9,34,27
+4080,2015,6,MN,NYG,PHI,Lincoln Financial Field,44,49,6,SSW,Clear,Grass,49.5,4.5,7,27
+4081,2015,7,THU,SEA,SF,Levi's Stadium,75,40,8,NW,Mostly Sunny,Grass,42,-6.5,20,3
+4082,2015,7,SUN,BUF,JAC,Wembley Stadium,48,74,2,NNW,Mostly Sunny,Grass,41,-4.5,31,34
+4083,2015,7,SUN,TB,WAS,FedEx Field,64,87,5,W,Sunny,Grass,42.5,3,30,31
+4084,2015,7,SUN,ATL,TEN,LP Field,59,95,8,NE,Cloudy,Grass,46.5,-7,10,7
+4085,2015,7,SUN,NO,IND,Lucas Oil Stadium,,,,,Closed Roof,AstroTurf,52,4,28,21
+4086,2015,7,SUN,MIN,DET,Ford Field,,,,,Dome,FieldTurf,44.5,-1,28,19
+4087,2015,7,SUN,PIT,KC,Arrowhead Stadium,58,57,7,NE,Sunny,Grass,42.5,2.5,13,23
+4088,2015,7,SUN,CLE,STL,Edward Jones Dome,,,,,Dome,AstroTurf,41.5,7,6,24
+4089,2015,7,SUN,HOU,MIA,Sun Life Stadium,84,62,13,ESE,Cloudy,Grass,44.5,4.5,27,44
+4090,2015,7,SUN,NYJ,NE,Gillette Stadium,58,80,9,SW,Cloudy,FieldTurf,48,9,23,30
+4091,2015,7,SUN,OAK,SD,Qualcomm Stadium,77,48,4,SW,Sunny,Grass,46.5,3.5,37,29
+4092,2015,7,SUN,DAL,NYG,MetLife Stadium,71,40,14,NNW,Mostly Cloudy,UBU Speed Series S5M,45.5,3.5,20,27
+4093,2015,7,SN,PHI,CAR,Bank of America Stadium,71,80,0,,Cloudy,Grass,45.5,3,16,27
+4094,2015,7,MN,BAL,ARI,University of Phoenix Stadium,,,,,Closed Roof,Grass,48,10,18,26
+4095,2015,8,THU,MIA,NE,Gillette Stadium,58,39,10,WSW,Cloudy,FieldTurf,51,9,7,36
+4096,2015,8,SUN,DET,KC,Wembley Stadium,50,91,2,NNE,Clear,Grass,45,3.5,10,45
+4097,2015,8,SUN,TB,ATL,Georgia Dome,,,,,Dome,AstroTurf,48.5,7,23,20
+4098,2015,8,SUN,ARI,CLE,FirstEnergy Stadium,62,58,21,SW,Sunny,Grass,46,-5.5,34,20
+4099,2015,8,SUN,SF,STL,Edward Jones Dome,,,,,Dome,AstroTurf,39.5,8,6,27
+4100,2015,8,SUN,NYG,NO,Mercedes-Benz Superdome,,,,,Dome,UBU Speed Series S5M,49,3,49,52
+4101,2015,8,SUN,MIN,CHI,Soldier Field,62,42,11,W,Sunny,Grass,42.5,-1,23,20
+4102,2015,8,SUN,SD,BAL,M&T Bank Stadium,63,72,10,WSW,Mostly Cloudy,MomentumTurf,50,3.5,26,29
+4103,2015,8,SUN,CIN,PIT,Heinz Field,62,71,11,WSW,Cloudy,Grass,48.5,0,16,10
+4104,2015,8,SUN,TEN,HOU,NRG Stadium,,,,,Closed Roof,Grass,43.5,4.5,6,20
+4105,2015,8,SUN,NYJ,OAK,O.co Coliseum,68,70,8,S,Partly Cloudy,Grass,44,-3,20,34
+4106,2015,8,SUN,SEA,DAL,AT&T Stadium,,,,,Closed Roof,AstroTurf,41,-5,13,12
+4107,2015,8,SN,GB,DEN,Sports Authority Field at Mile High,61,23,9,SW,Partly Cloudy,Grass,45.5,-3,10,29
+4108,2015,8,MN,IND,CAR,Bank of America Stadium,60,100,7,ENE,Light Rain,Grass,46.5,7,26,29
+4109,2015,9,THU,CLE,CIN,Paul Brown Stadium,71,61,4,S,Cloudy,UBU Speed Series S5M,45,12,10,31
+4110,2015,9,SUN,GB,CAR,Bank of America Stadium,57,50,10,ENE,Cloudy,Grass,46.5,-2.5,29,37
+4111,2015,9,SUN,WAS,NE,Gillette Stadium,54,34,12,WNW,Sunny,FieldTurf,52,14,10,27
+4112,2015,9,SUN,TEN,NO,Mercedes-Benz Superdome,,,,,Dome,UBU Speed Series S5M,48,8,34,28
+4113,2015,9,SUN,MIA,BUF,Ralph Wilson Stadium,49,55,7,W,Partly Cloudy,A Turf Titan,44,3,17,33
+4114,2015,9,SUN,STL,MIN,TCF Bank Stadium,51,,20,S,Sunny,FieldTurf,40,2,18,21
+4115,2015,9,SUN,JAC,NYJ,MetLife Stadium,56,36,10,WNW,Sunny,FieldTurf,42,8,23,28
+4116,2015,9,SUN,OAK,PIT,Heinz Field,54,38,5,NE,Sunny,Grass,48,4.5,35,38
+4117,2015,9,SUN,NYG,TB,Raymond James Stadium,80,90,3,SW,Cloudy,Grass,50,-2.5,32,18
+4118,2015,9,SUN,ATL,SF,Levi's Stadium,58,84,0,CALM,Cloudy,Grass,44,-7,16,17
+4119,2015,9,SUN,DEN,IND,Lucas Oil Stadium,,,,,Closed Roof,AstroTurf,45,-5,24,27
+4120,2015,9,SN,PHI,DAL,AT&T Stadium,,,,,Closed Roof,AstroTurf,44.5,-3,33,27
+4121,2015,9,MN,CHI,SD,Qualcomm Stadium,63,67,9,W,Cloudy,Grass,49,4,22,19
+4122,2015,10,THU,BUF,NYJ,MetLife Stadium,60,75,16,WSW,Cloudy,FieldTurf,41.5,2.5,22,17
+4123,2015,10,SUN,DET,GB,Lambeau Field,55,59,7,S,Sunny,DD GrassMaster,49,10.5,18,16
+4124,2015,10,SUN,DAL,TB,Raymond James Stadium,79,56,13,E,Cloudy,Grass,43.5,1,6,10
+4125,2015,10,SUN,CAR,TEN,LP Field,57,24,2,SSE,Cloudy,Grass,44,-4,27,10
+4126,2015,10,SUN,CHI,STL,Edward Jones Dome,,,,,Dome,AstroTurf,42.5,7,37,13
+4127,2015,10,SUN,NO,WAS,FedEx Field,61,29,5,SSW,Sunny,Grass,50,0,14,47
+4128,2015,10,SUN,MIA,PHI,Lincoln Financial Field,59,34,13,WSW,Sunny,Grass,49.5,6,20,19
+4129,2015,10,SUN,CLE,PIT,Heinz Field,61,32,12,SW,Sunny,Grass,41.5,6,9,30
+4130,2015,10,SUN,JAC,BAL,M&T Bank Stadium,60,34,10,WSW,Partly Cloudy,MomentumTurf,47.5,4.5,22,20
+4131,2015,10,SUN,MIN,OAK,O.co Coliseum,62,50,31,W,Sunny,Grass,44,3,30,14
+4132,2015,10,SUN,NE,NYG,MetLife Stadium,60,31,8,WSW,Clear,UBU Speed Series S5M,54.5,-7.5,27,26
+4133,2015,10,SUN,KC,DEN,Sports Authority Field at Mile High,64,10,5,NE,Mostly Sunny,Grass,41.5,4.5,29,13
+4134,2015,10,SN,ARI,SEA,CenturyLink Field,49,63,0,CALM,Cloudy,FieldTurf,44.5,3,39,32
+4135,2015,10,MN,HOU,CIN,Paul Brown Stadium,53,60,4,WSW,Light Showers,UBU Speed Series S5M,47.5,11,10,6
+4136,2015,11,THU,TEN,JAC,EverBank Field,75,90,5,W,Chance Rain,Grass,42,3,13,19
+4137,2015,11,SUN,OAK,DET,Ford Field,,,,,Dome,FieldTurf,49.5,1,13,18
+4138,2015,11,SUN,IND,ATL,Georgia Dome,,,,,Dome,AstroTurf,47.5,5,24,21
+4139,2015,11,SUN,NYJ,HOU,NRG Stadium,,,,,Closed Roof,Grass,40.5,-3,17,24
+4140,2015,11,SUN,TB,PHI,Lincoln Financial Field,48,41,15,NW,Cloudy,Grass,45,5.5,45,17
+4141,2015,11,SUN,DEN,CHI,Soldier Field,29,57,9,SSW,Sunny,Grass,41,-1,17,15
+4142,2015,11,SUN,GB,MIN,TCF Bank Stadium,30,,8,S,Cloudy,FieldTurf,44.5,1,30,13
+4143,2015,11,SUN,STL,BAL,M&T Bank Stadium,47,39,14,NNW,Partly Cloudy,MomentumTurf,41.5,2.5,13,16
+4144,2015,11,SUN,DAL,MIA,Sun Life Stadium,74,90,10,NW,Mostly Cloudy,Grass,46.5,-1,24,14
+4145,2015,11,SUN,WAS,CAR,Bank of America Stadium,50,63,8,N,Mostly Sunny,Grass,44.5,7,16,44
+4146,2015,11,SUN,SF,SEA,CenturyLink Field,46,60,6,N,Sunny,FieldTurf,39.5,13,13,29
+4147,2015,11,SUN,KC,SD,Qualcomm Stadium,87,12,4,NNW,Sunny,Grass,45,-3,33,3
+4148,2015,11,SN,CIN,ARI,University of Phoenix Stadium,,,,,Closed Roof,Grass,49,4.5,31,34
+4149,2015,11,MN,BUF,NE,Gillette Stadium,29,40,8,WNW,Clear,FieldTurf,48,7,13,20
+4150,2015,12,THU,PHI,DET,Ford Field,,,,,Dome,FieldTurf,46,2.5,14,45
+4151,2015,12,THU,CAR,DAL,AT&T Stadium,,,,,Closed Roof,AstroTurf,45.5,1,33,14
+4152,2015,12,THU,CHI,GB,Lambeau Field,39,92,19,N,Rain,DD GrassMaster,45,8.5,17,13
+4153,2015,12,SUN,NO,HOU,NRG Stadium,,,,,Closed Roof,Grass,48,3,6,24
+4154,2015,12,SUN,STL,CIN,Paul Brown Stadium,41,88,8,NNE,Cloudy,UBU Speed Series S5M,42,9,7,31
+4155,2015,12,SUN,MIN,ATL,Georgia Dome,,,,,Dome,AstroTurf,45.5,1,20,10
+4156,2015,12,SUN,NYG,WAS,FedEx Field,46,93,5,NNE,Cloudy,Grass,47,-2.5,14,20
+4157,2015,12,SUN,TB,IND,Lucas Oil Stadium,,,,,Closed Roof,AstroTurf,46.5,3,12,25
+4158,2015,12,SUN,BUF,KC,Arrowhead Stadium,35,99,7,NE,Rain,Grass,41.5,6,22,30
+4159,2015,12,SUN,OAK,TEN,LP Field,56,100,4,NE,Rain,Grass,44,-1,24,21
+4160,2015,12,SUN,SD,JAC,EverBank Field,75,60,8,NE,Chance Rain,Grass,46.5,4.5,31,25
+4161,2015,12,SUN,MIA,NYJ,MetLife Stadium,45,44,5,NNE,Sunny,FieldTurf,42.5,3.5,20,38
+4162,2015,12,SUN,ARI,SF,Levi's Stadium,54,40,4,WSW,Sunny,Grass,45,-10,19,13
+4163,2015,12,SUN,PIT,SEA,CenturyLink Field,38,80,2,W,Cloudy,FieldTurf,46,3.5,30,39
+4164,2015,12,SN,NE,DEN,Sports Authority Field at Mile High,23,75,3,NE,Light Snow,Grass,43,-3,24,30
+4165,2015,12,MN,BAL,CLE,FirstEnergy Stadium,45,58,9,E,Clear,Grass,41,3,33,27
+4166,2015,13,THU,GB,DET,Ford Field,,,,,Dome,FieldTurf,47,-2.5,27,23
+4167,2015,13,SUN,NYJ,NYG,MetLife Stadium,51,50,8,S,Sunny,UBU Speed Series S5M,46,-2,23,20
+4168,2015,13,SUN,ARI,STL,Edward Jones Dome,,,,,Dome,AstroTurf,43,-5.5,27,3
+4169,2015,13,SUN,ATL,TB,Raymond James Stadium,79,63,18,ENE,Cloudy,Grass,46,1,19,23
+4170,2015,13,SUN,CAR,NO,Mercedes-Benz Superdome,,,,,Dome,UBU Speed Series S5M,50,-7,41,38
+4171,2015,13,SUN,SEA,MIN,TCF Bank Stadium,37,86,3,W,Cloudy,FieldTurf,42,-2,38,7
+4172,2015,13,SUN,HOU,BUF,Ralph Wilson Stadium,47,65,8,WSW,Cloudy,A Turf Titan,41.5,3,21,30
+4173,2015,13,SUN,BAL,MIA,Sun Life Stadium,80,70,21,NE,Cloudy,Grass,43,3.5,13,15
+4174,2015,13,SUN,CIN,CLE,FirstEnergy Stadium,45,63,12,S,Sunny,Grass,43.5,-9.5,37,3
+4175,2015,13,SUN,JAC,TEN,LP Field,56,50,1,SE,Cloudy,Grass,43.5,2.5,39,42
+4176,2015,13,SUN,SF,CHI,Soldier Field,50,55,5,S,Sunny,Grass,43.5,7.5,26,20
+4177,2015,13,SUN,DEN,SD,Qualcomm Stadium,78,13,4,W,Sunny,Grass,43.5,-3.5,17,3
+4178,2015,13,SUN,KC,OAK,O.co Coliseum,57,95,3,N,Cloudy,Grass,44,-3,34,20
+4179,2015,13,SUN,PHI,NE,Gillette Stadium,52,49,5,SW,Clear,FieldTurf,49,9.5,35,28
+4180,2015,13,SN,IND,PIT,Heinz Field,37,74,2,SSE,Partly Cloudy,Grass,49,7,10,45
+4181,2015,13,MN,DAL,WAS,FedEx Field,41,75,0,CALM,Clear,Grass,42,4,19,16
+4182,2015,14,THU,MIN,ARI,University of Phoenix Stadium,,,,,Closed Roof,Grass,46.5,10,20,23
+4183,2015,14,SUN,BUF,PHI,Lincoln Financial Field,66,68,3,SE,Partly Cloudy,Grass,47,1,20,23
+4184,2015,14,SUN,SF,CLE,FirstEnergy Stadium,63,75,11,S,Cloudy,Grass,41,2,10,24
+4185,2015,14,SUN,DET,STL,Edward Jones Dome,,,,,Dome,AstroTurf,41,-3,14,21
+4186,2015,14,SUN,NO,TB,Raymond James Stadium,81,63,15,E,Cloudy,Grass,50.5,4.5,24,17
+4187,2015,14,SUN,TEN,NYJ,MetLife Stadium,67,55,5,S,Clear,FieldTurf,43,7,8,30
+4188,2015,14,SUN,PIT,CIN,Paul Brown Stadium,63,79,8,S,Cloudy,UBU Speed Series S5M,50,2.5,33,20
+4189,2015,14,SN,SEA,BAL,M&T Bank Stadium,65,70,2,S,Partly Cloudy,MomentumTurf,40.5,-11.5,35,6
+4190,2015,14,SUN,IND,JAC,EverBank Field,79,66,5,E,Clear,Grass,46,1,16,51
+4191,2015,14,SUN,SD,KC,Arrowhead Stadium,61,97,14,ESE,Rain,Grass,45,10.5,3,10
+4192,2015,14,SUN,WAS,CHI,Soldier Field,62,80,12,SSE,Chance Rain,Grass,43.5,3.5,24,21
+4193,2015,14,SUN,ATL,CAR,Bank of America Stadium,63,93,6,S,Sunny,Grass,46.5,8,0,38
+4194,2015,14,SUN,OAK,DEN,Sports Authority Field at Mile High,45,33,2,W,Partly Cloudy,Grass,43.5,7,15,12
+4195,2015,14,SUN,DAL,GB,Lambeau Field,53,100,10,SE,Rain,DD GrassMaster,42.5,6.5,7,28
+4196,2015,14,SN,NE,HOU,NRG Stadium,,,,,Closed Roof,Grass,45,-3.5,27,6
+4197,2015,14,MN,NYG,MIA,Sun Life Stadium,77,78,6,SSE,Clear,Grass,46.5,-1.5,31,24
+4198,2015,15,THU,TB,STL,Edward Jones Dome,,,,,Dome,AstroTurf,41,1,23,31
+4199,2015,15,SAT,NYJ,DAL,AT&T Stadium,,,,,Closed Roof,AstroTurf,41.5,-3.5,19,16
+4200,2015,15,SUN,CHI,MIN,TCF Bank Stadium,36,,3,N,Cloudy,FieldTurf,43,5.5,17,38
+4201,2015,15,SUN,ATL,JAC,EverBank Field,65,60,8,NE,Chance Rain,Grass,49,3,23,17
+4202,2015,15,SUN,HOU,IND,Lucas Oil Stadium,,,,,Closed Roof,AstroTurf,42,2,16,10
+4203,2015,15,SUN,CAR,NYG,MetLife Stadium,41,37,8,WNW,Sunny,UBU Speed Series S5M,48,-4,38,35
+4204,2015,15,SUN,TEN,NE,Gillette Stadium,40,41,12,W,Sunny,FieldTurf,46.5,14,16,33
+4205,2015,15,SUN,BUF,WAS,FedEx Field,43,30,3,W,Sunny,Grass,44,-2,25,35
+4206,2015,15,SUN,KC,BAL,M&T Bank Stadium,41,35,5,W,Sunny,MomentumTurf,41,-7,34,14
+4207,2015,15,SUN,CLE,SEA,CenturyLink Field,47,56,10,S,Cloudy,FieldTurf,43,15,13,30
+4208,2015,15,SUN,GB,OAK,O.co Coliseum,54,70,18,SSE,Cloudy,Grass,48,-3,30,20
+4209,2015,15,SUN,DEN,PIT,Heinz Field,41,35,8,SSE,Partly Cloudy,Grass,44.5,7,27,34
+4210,2015,15,SUN,MIA,SD,Qualcomm Stadium,61,49,11,WSW,Fair,Grass,46,2,14,30
+4211,2015,15,SUN,CIN,SF,Levi's Stadium,52,63,14,ESE,Cloudy,Grass,40.5,-5.5,24,14
+4212,2015,15,SN,ARI,PHI,Lincoln Financial Field,37,54,4,S,Partly Cloudy,Grass,51,-3.5,40,17
+4213,2015,15,MN,DET,NO,Mercedes-Benz Superdome,,,,,Dome,UBU Speed Series S5M,51,3,35,27
+4214,2015,16,THU,SD,OAK,O.co Coliseum,47,70,25,WNW,Partly Cloudy,Grass,46.5,5.5,20,23
+4215,2015,16,SAT,WAS,PHI,Lincoln Financial Field,52,72,6,ENE,Cloudy,Grass,49,3,38,24
+4216,2015,16,SUN,NE,NYJ,MetLife Stadium,57,83,14,WSW,Cloudy,FieldTurf,45.5,-3,20,26
+4217,2015,16,SUN,HOU,TEN,LP Field,73,75,15,S,Cloudy,Grass,40.5,-3.5,34,6
+4218,2015,16,SUN,CLE,KC,Arrowhead Stadium,36,91,16,NNE,Cloudy,Grass,42.5,10.5,13,17
+4219,2015,16,SUN,IND,MIA,Sun Life Stadium,82,69,15,ESE,Partly Cloudy,Grass,44,2.5,18,12
+4220,2015,16,SUN,PIT,BAL,M&T Bank Stadium,64,87,9,SW,Overcast,MomentumTurf,47,-10,17,20
+4221,2015,16,SUN,JAC,NO,Mercedes-Benz Superdome,,,,,Dome,UBU Speed Series S5M,51.5,3,27,38
+4222,2015,16,SUN,SF,DET,Ford Field,,,,,Dome,FieldTurf,43,10,17,32
+4223,2015,16,SUN,DAL,BUF,Ralph Wilson Stadium,39,83,11,NNW,Rain,A Turf Titan,42,6.5,6,16
+4224,2015,16,SUN,CHI,TB,Raymond James Stadium,83,59,13,SE,Cloudy,Grass,45.5,3.5,26,21
+4225,2015,16,SUN,CAR,ATL,Georgia Dome,,,,,Dome,AstroTurf,47.5,-6.5,13,20
+4226,2015,16,SUN,STL,SEA,CenturyLink Field,37,86,0,CALM,Cloudy,FieldTurf,40.5,12,23,17
+4227,2015,16,SUN,GB,ARI,University of Phoenix Stadium,,,,,Closed Roof,Grass,50.5,4.5,8,38
+4228,2015,16,SN,NYG,MIN,TCF Bank Stadium,13,,8,NW,Partly Cloudy,FieldTurf,44.5,6.5,17,50
+4229,2015,16,MN,CIN,DEN,Sports Authority Field at Mile High,16,75,6,NE,Mostly Cloudy,Grass,39.5,3.5,17,20
+4230,2015,17,SUN,NYJ,BUF,Ralph Wilson Stadium,35,70,21,WSW,Cloudy,A Turf Titan,42,-2.5,17,22
+4231,2015,17,SUN,NE,MIA,Sun Life Stadium,80,65,7,N,Cloudy,Grass,47,-10,10,20
+4232,2015,17,SUN,NO,ATL,Georgia Dome,,,,,Dome,AstroTurf,53,5.5,20,17
+4233,2015,17,SUN,BAL,CIN,Paul Brown Stadium,35,67,7,W,Mostly Cloudy,UBU Speed Series S5M,41.5,9.5,16,24
+4234,2015,17,SUN,PIT,CLE,FirstEnergy Stadium,34,75,18,W,Cloudy,Grass,47,-10.5,28,12
+4235,2015,17,SUN,JAC,HOU,NRG Stadium,,,,,Closed Roof,Grass,45.5,6.5,6,30
+4236,2015,17,SUN,TEN,IND,Lucas Oil Stadium,,,,,Closed Roof,AstroTurf,39,3.5,24,30
+4237,2015,17,SUN,WAS,DAL,AT&T Stadium,,,,,Closed Roof,AstroTurf,39.5,4,34,23
+4238,2015,17,SUN,PHI,NYG,MetLife Stadium,45,38,17,W,Sunny,UBU Speed Series S5M,51,3.5,35,30
+4239,2015,17,SUN,DET,CHI,Soldier Field,31,67,15,NW,Cloudy,Grass,45.5,0,24,20
+4240,2015,17,SUN,OAK,KC,Arrowhead Stadium,37,56,9,N,Sunny,Grass,43.5,7,17,23
+4241,2015,17,SUN,SD,DEN,Sports Authority Field at Mile High,50,21,5,N,Mostly Sunny,Grass,41.5,9,20,27
+4242,2015,17,SUN,SEA,ARI,University of Phoenix Stadium,,,,,Closed Roof,Grass,47,6.5,36,6
+4243,2015,17,SUN,STL,SF,Levi's Stadium,53,59,6,NNW,Partly Cloudy,Grass,37.5,-3,16,19
+4244,2015,17,SUN,TB,CAR,Bank of America Stadium,54,31,4,NW,Partly Cloudy,Grass,46,10.5,10,38
+4245,2015,17,SN,MIN,GB,Lambeau Field,24,70,11,W,Cloudy,DD GrassMaster,45.5,3,20,13
+4246,2015,18,SAT,KC,HOU,NRG Stadium,,,,,Closed Roof,Grass,40,-3.5,30,0
+4247,2015,18,SAT,PIT,CIN,Paul Brown Stadium,51,82,5,SE,Light Rain,UBU Speed Series S5M,45.5,-3,18,16
+4248,2015,18,SUN,SEA,MIN,TCF Bank Stadium,-6,,12,W,Clear,FieldTurf,39.5,-5,10,9
+4249,2015,18,SUN,GB,WAS,FedEx Field,61,47,14,SW,Cloudy,Grass,45,-1,35,18
