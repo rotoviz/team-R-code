@@ -144,7 +144,7 @@ n1Tbl$seas <- n1Tbl$seas+1
 
 colnames(n1Tbl)[3:ncol(n1Tbl)] <- paste(colnames(n1Tbl)[3:ncol(n1Tbl)],".n1",sep="")
 
-#now we have a n1Tbl that can be easily merged back with the sumTbl
+#now we have a n1Tbl that can be easily merged back with the sumTbl. it's worth noting that the way this merge works is by dropping any row in the sumTbl that can't be matched to the n1Tbl - so the only players we're analyzing are players that appeared in the follow up season. that's a relatively safe thing to do if you know that the players you're studying are definitely playing in the following year. but if you were doing something like a long term dynasty study then you would want to know how many records don't match and probably assign those records a zero in the n+1 fantasy points. but in this exercise we'll just ignore that issue.
 
 sumTbl <- merge(sumTbl,n1Tbl)
 
