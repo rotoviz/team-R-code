@@ -1,0 +1,282 @@
+## Load Packages
+
+packages <- c("dplyr", "magrittr", "jsonlite", "tidyr", "purrr", "SDMTools", "stringr", "lubridate", "tidyr", "zoo", "ineq", "mgcv", "RMySQL")
+options(warn = -1)
+lapply(packages, library, character.only = T)
+rm(packages)
+
+## Pull Armchair Analysis Data in from Database
+
+## Connect to your database with Armchair Analysis Data and assign to mydb
+
+chart <- dbReadTable(mydb, "chart")
+game <- dbReadTable(mydb, "game")
+game$v <- gsub(game$v, pattern = "JAC", replacement = "JAX")
+game$h <- gsub(game$h, pattern = "JAC",replacement = "JAX")
+offense <- dbReadTable(mydb, "offense") %>%
+  mutate(week = game$wk[match(gid, game$gid)], ypc = round(ry/ra,1), ypt = round(recy/trg,1)) %>%
+  select(uid:ry, ypc, tdr:recy, ypt, tdrec:year, week, everything())
+offense$team <- gsub(offense$team, pattern = "JAC", replacement = "JAX")
+drive <- dbReadTable(mydb, "drive")
+drive$tname <- gsub(drive$tname, pattern = "JAC", replacement = "JAX")
+penalty <- dbReadTable(mydb, "penalty")
+penalty$ptm <- gsub(penalty$ptm, pattern = "JAC",replacement = "JAX")
+sack <- dbReadTable(mydb, "sack")
+pass <- dbReadTable(mydb, "pass")
+rush <- dbReadTable(mydb, "rush")
+oline <- dbReadTable(mydb, "oline")
+play <- dbReadTable(mydb, "play")
+play$off <- gsub(play$off, pattern = "JAC", replacement = "JAX")
+play$def <- gsub(play$def, pattern = "JAC", replacement = "JAX")
+player <- dbReadTable(mydb, "player") %>%
+  within(fname[player %in% c("LB-0250")] <- "LeVeon") %>%
+  within(fname[player %in% c("SS-2100")] <- "Steve L") %>%
+  within(lname[player %in% c("OB-0075")] <- "Beckham") %>%
+  within(fname[player %in% c("TH-1850")] <- "T.Y.") %>%
+  within(fname[player %in% c("DT-0850")] <- "DeAnthony") %>%
+  within(fname[player %in% c("SJ-0600")] <- "Stevie")
+player$cteam <- gsub(player$cteam, pattern = "JAC", replacement = "JAX")
+redzone <- dbReadTable(mydb, "redzone")
+team <- dbReadTable(mydb, "team")
+team$tname <- gsub(team$tname, pattern = "JAC", replacement = "JAX")
+defense <- dbReadTable(mydb, "defense")
+defense$team <- gsub(defense$team, pattern = "JAC", replacement = "JAX")
+dbDisconnect(mydb)
+rm(mydb)
+
+## Get Teams Points Per Game
+
+weeklyscoring <- mutate(team, team = tname, year = game$seas[match(gid, game$gid)], week = game$wk[match(gid, game$gid)]) %>%
+  select(team, year, gid, week, pts) %>%
+  filter(week <= 17)
+
+get_weekly_scoring <- function() {
+  for (i in 1:17){
+    a <- filter(weeklyscoring, week < i) %>%
+      group_by(team, year) %>%
+      summarise(pts.game = round(mean(pts),2)) %>%
+      mutate(week = i) %>%
+      select(team, year, week, pts.game)
+    assign(paste("a", i, sep = ""), a)
+  }
+  
+  data <- bind_rows(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17)
+  
+  rm(a, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, i)
+  
+  return(data)
+  
+}
+
+weeklyscoring <- get_weekly_scoring()
+
+## Join Offense Tables
+
+offense <- left_join(left_join(left_join(left_join(offense, mutate(game, win = ifelse(ptsv > ptsh, v, h)) %>%
+                                                     select(gid, win), by = c("gid")),
+                                         select(mutate(team, team = tname, gid = gid, teamra = ra, teampa = pa + sk, teamrzra = rzra, teamrzpa = rzpa),
+                                                team, gid, teamra, teampa, teamrzra, teamrzpa, snpo), by = c("gid","team")),
+                               select(mutate(redzone, rzra = ra, rzpa = pa, rztrg = trg), gid, player, rzpa, rzra, rztrg), by = c("player","gid")),
+                     weeklyscoring, by = c("team", "year", "week")) %>%
+  mutate(win = ifelse(win == team, 1, 0)) %>%
+  select(gid, year, week, player, team, pts.game, pa, teampa, rzpa, teamrzpa, pc, py:sra, teamra, rzra, teamrzra, ry:trg, rztrg, rec:snp, snpo, fpts, win)
+
+## Seperate Data by Position
+
+teams <- data.frame(old = c("ARI", "ATL", "BAL", "BUF", "CAR", "CHI", "CIN", "CLE", "DAL", "DEN", "DET", 
+                                 "GB", "HOU", "IND", "JAX", "KC", "MIA", "MIN", "NE", "NO", "NYG", "NYJ", 
+                                 "OAK", "PHI", "PIT", "SD", "SEA", "SF", "STL", "TB", "TEN", "WAS"),
+                         new = c("Cardinals", "Falcons", "Ravens", "Bills", "Panthers", "Bears", "Bengals", "Browns", "Cowboys", "Broncos", "Lions", 
+                                 "Packers", "Texans", "Colts", "Jaguars", "Chiefs", "Dolphins", "Vikings", "Patriots", "Saints", "Giants", "Jets", 
+                                 "Raiders", "Eagles", "Steelers", "Chargers", "Seahawks", "49ers", "Rams", "Buccaneers", "Titans", "Redskins"))
+
+QB <- left_join(offense, mutate(sack, player = qb, gid = play$gid[match(pid, play$pid)]) %>%
+                  group_by(gid, player) %>%
+                  summarize(sack = length(ydsl), ydsl = sum(ydsl)) %>%
+                  ungroup(), by = c("player","gid")) %>%
+  replace(is.na(.), 0) %>%
+  mutate(name = paste((player$fname[match(player, player$player)]), (player$lname[match(player, player$player)]), sep = " "),
+         pos = player$pos1[match(player, player$player)],
+         week = game$wk[match(gid, game$gid)],
+         venue = ifelse(game$h[match(gid, game$gid)] == team, "home", "away"),
+         opp = ifelse(venue == "away", game$h[match(gid, game$gid)], game$v[match(gid, game$gid)]),
+         spread = ifelse(venue == "away", game$sprv[match(gid, game$gid)], 0 - game$sprv[match(gid, game$gid)]),
+         teamtotal = ifelse(spread > 0, ((game$ou[match(gid, game$gid)] - spread)/2), ((game$ou[match(gid, game$gid)] + spread)/2) - spread),
+         relativetotal = round(teamtotal-pts.game,2),
+         gametotal = game$ou[match(gid, game$gid)]) %>%
+  filter(pos == "QB", week <= 17) %>%
+  select(name, player, pos, year, week, gid, team, opp, venue, spread, relativetotal, teamtotal, gametotal, pa:tdr, rzpa,rzra, fuml, sack, ydsl, snp, snpo, fpts, win) %>%
+  group_by(year, week) %>%
+  mutate(rank = round(rank(desc(fpts)))) %>%
+  select(name:snpo, rank, everything()) %>%
+  ungroup() %>%
+  arrange(desc(fpts))
+
+RB <- mutate(offense, name = paste((player$fname[match(player, player$player)]),(player$lname[match(player, player$player)]), sep = " "),
+             pos = player$pos1[match(player, player$player)],
+             week = game$wk[match(gid, game$gid)],
+             venue = ifelse(game$h[match(gid, game$gid)] == team, "home", "away"),
+             opp = ifelse(venue == "away", game$h[match(gid, game$gid)], game$v[match(gid, game$gid)]),
+             spread = ifelse(venue == "away", game$sprv[match(gid, game$gid)], 0 - game$sprv[match(gid, game$gid)]),
+             teamtotal = ifelse(spread > 0, ((game$ou[match(gid, game$gid)] - spread)/2), ((game$ou[match(gid, game$gid)] + spread)/2) - spread),
+             relativetotal = round(teamtotal-pts.game,2),
+             gametotal = game$ou[match(gid, game$gid)]) %>%
+  filter(pos == "RB", week <= 17) %>%
+  select(name, player, pos, year, week, gid, team, opp, venue, spread, relativetotal, teamtotal, gametotal, ra:ypc, rzra, tdr, trg, teampa, rec:ypt, rztrg, teamrzpa, tdrec, fuml, snp, snpo, fpts, win) %>%
+  group_by(year, week) %>%
+  mutate(rank = round(rank(desc(fpts)))) %>%
+  select(name:snpo, rank, everything()) %>%
+  ungroup() %>%
+  arrange(desc(fpts))
+
+WR <- mutate(offense, name = paste((player$fname[match(player, player$player)]),(player$lname[match(player, player$player)]), sep = " "),
+             pos = player$pos1[match(player, player$player)],
+             week = game$wk[match(gid, game$gid)],
+             venue = ifelse(game$h[match(gid, game$gid)] == team, "home", "away"),
+             opp = ifelse(venue == "away", game$h[match(gid, game$gid)], game$v[match(gid, game$gid)]),
+             spread = ifelse(venue == "away", game$sprv[match(gid, game$gid)], 0 - game$sprv[match(gid, game$gid)]),
+             teamtotal = ifelse(spread > 0, ((game$ou[match(gid, game$gid)] - spread)/2), ((game$ou[match(gid, game$gid)] + spread)/2) - spread),
+             relativetotal = round(teamtotal-pts.game,2),
+             gametotal = game$ou[match(gid, game$gid)]) %>%
+  filter(pos == "WR", week <= 17) %>%
+  select(name, player, pos, year, week, gid, team, opp, venue, spread, relativetotal, teamtotal, gametotal, ra:ypc, rzra, tdr, trg, teampa, rec:ypt, rztrg, teamrzpa, tdrec, fuml, snp, snpo, fpts, win) %>%
+  group_by(year, week) %>%
+  mutate(rank = round(rank(desc(fpts)))) %>%
+  select(name:snpo, rank, everything()) %>%
+  ungroup() %>%
+  arrange(desc(fpts))
+
+TE <- mutate(offense, name = paste((player$fname[match(player, player$player)]),(player$lname[match(player, player$player)]), sep = " "),
+             pos = player$pos1[match(player, player$player)],
+             week = game$wk[match(gid, game$gid)],
+             venue = ifelse(game$h[match(gid, game$gid)] == team, "home", "away"),
+             opp = ifelse(venue == "away", game$h[match(gid, game$gid)], game$v[match(gid, game$gid)]),
+             spread = ifelse(venue == "away", game$sprv[match(gid, game$gid)], 0 - game$sprv[match(gid, game$gid)]),
+             teamtotal = ifelse(spread > 0, ((game$ou[match(gid, game$gid)] - spread)/2), ((game$ou[match(gid, game$gid)] + spread)/2) - spread),
+             relativetotal = round(teamtotal-pts.game,2),
+             gametotal = game$ou[match(gid, game$gid)]) %>%
+  filter(pos == "TE", week <= 17) %>%
+  select(name, player, pos, year, week, gid, team, opp, venue, spread, relativetotal, teamtotal, gametotal, ra:ypc, rzra, tdr, trg, teampa, rec:ypt, rztrg, teamrzpa, tdrec, fuml, snp, snpo, fpts, win) %>%
+  group_by(year, week) %>%
+  mutate(rank = round(rank(desc(fpts)))) %>%
+  select(name:snpo, rank, everything()) %>%
+  ungroup() %>%
+  arrange(desc(fpts))
+
+DST <- left_join(group_by(defense, team, gid, year) %>%
+                   summarise(sack = sum(sck), ints = sum(ints), forc = sum(forc), frcv = sum(frcv), saf = sum(saf), blk = sum(blk), tddef = sum(tdd),
+                             tdret = sum(tdret)) %>%
+                   mutate(week = game$wk[match(gid, game$gid)],
+                          venue = ifelse(game$h[match(gid, game$gid)] == team, "home", "away"),
+                          opp = ifelse(venue == "away", game$h[match(gid, game$gid)], game$v[match(gid, game$gid)]),
+                          spread = ifelse(venue == "away", game$sprv[match(gid, game$gid)], 0 - game$sprv[match(gid, game$gid)]),
+                          teamtotal = ifelse(spread > 0, ((game$ou[match(gid, game$gid)] - spread)/2), ((game$ou[match(gid, game$gid)] + spread)/2) - spread),
+                          gametotal = game$ou[match(gid, game$gid)], teamtotal = gametotal-teamtotal),
+                 select(team, tname, gid, pts, tdt), by = c("gid", "opp" = "tname")) %>%
+  mutate(name = teams$new[match(team, teams$old)], ptsa = (pts - tdt*6), bonus = ifelse(ptsa == 0, 10, 0), bonus = ifelse(ptsa >= 1, 7, bonus), bonus = ifelse(ptsa >= 7, 4, bonus),
+         bonus = ifelse(ptsa >= 14, 1, bonus), bonus = ifelse(ptsa >= 21, 0, bonus), bonus = ifelse(ptsa >= 28, -1, bonus),
+         bonus = ifelse(ptsa >= 35, -4, bonus), fpts = (sack + ints*2 + frcv*2 + (tddef + tdret)*6 + saf*2 + blk*2 + bonus)) %>%
+  select(team, opp, name, gid, year, week, venue, spread, teamtotal, gametotal, sack:tdret, ptsa, fpts) %>%
+  ungroup() %>%
+  group_by(year, week) %>%
+  mutate(rank = round(rank(desc(fpts)))) %>%
+  select(name:ptsa, rank, everything()) %>%
+  ungroup() %>%
+  arrange(desc(fpts))
+
+## Get Adjusted Fpts Allowed
+
+QBaFPA<- full_join(
+  full_join(group_by(QB, opp,year) %>%
+              summarize(fpa = round(sum(fpts)/length(unique(gid)),2)) %>%
+              select(opp,year,fpa), group_by(QB,team,year,opp, gid) %>%
+              summarize(fps = sum(fpts)), by = c("opp", "year")) %>%
+    mutate(QBaFPS = fps-fpa) %>%
+    select(team, year, QBaFPS) %>%
+    group_by(team, year) %>%
+    summarize(QBaFPS = round(mean(QBaFPS),2)),
+  full_join(group_by(QB,team,year) %>%
+              summarize(fps = round(sum(fpts)/length(unique(gid)),2)) %>%
+              select(team,year,fps), group_by(QB, team, opp,year, gid) %>%
+              summarize(fpa = sum(fpts)), by = c("team", "year")) %>%
+    mutate(QBaFPA = fpa-fps) %>%
+    select(opp, year, QBaFPA) %>%
+    group_by(opp, year) %>%
+    summarize(QBaFPA = round(mean(QBaFPA),2)), by = c("year", "team" = "opp"))
+
+RBaFPA <- full_join(
+  full_join(group_by(RB, opp,year) %>%
+              summarize(fpa = round(sum(fpts)/length(unique(gid)),2)) %>%
+              select(opp,year,fpa), group_by(RB,team,year,opp, gid) %>%
+              summarize(fps = sum(fpts)), by = c("opp", "year")) %>%
+    mutate(RBaFPS = fps-fpa) %>%
+    select(team, year, RBaFPS) %>%
+    group_by(team, year) %>%
+    summarize(RBaFPS = round(mean(RBaFPS),2)),
+  full_join(group_by(RB,team,year) %>%
+              summarize(fps = round(sum(fpts)/length(unique(gid)),2)) %>%
+              select(team,year,fps), group_by(RB, team, opp,year, gid) %>%
+              summarize(fpa = sum(fpts)), by = c("team", "year")) %>%
+    mutate(RBaFPA = fpa-fps) %>%
+    select(opp, year, RBaFPA) %>%
+    group_by(opp, year) %>%
+    summarize(RBaFPA = round(mean(RBaFPA),2)), by = c("year", "team" = "opp"))
+
+WRaFPA <- full_join(
+  full_join(group_by(WR, opp,year) %>%
+              summarize(fpa = round(sum(fpts)/length(unique(gid)),2)) %>%
+              select(opp,year,fpa), group_by(WR,team,year,opp, gid) %>%
+              summarize(fps = sum(fpts)), by = c("opp", "year")) %>%
+    mutate(WRaFPS = fps-fpa) %>%
+    select(team, year, WRaFPS) %>%
+    group_by(team, year) %>%
+    summarize(WRaFPS = round(mean(WRaFPS),2)),
+  full_join(group_by(WR,team,year) %>%
+              summarize(fps = round(sum(fpts)/length(unique(gid)),2)) %>%
+              select(team,year,fps), group_by(WR, team, opp,year, gid) %>%
+              summarize(fpa = sum(fpts)), by = c("team", "year")) %>%
+    mutate(WRaFPA = fpa-fps) %>%
+    select(opp, year, WRaFPA) %>%
+    group_by(opp, year) %>%
+    summarize(WRaFPA = round(mean(WRaFPA),2)), by = c("year", "team" = "opp"))
+
+TEaFPA <- full_join(
+  full_join(group_by(TE, opp,year) %>%
+              summarize(fpa = round(sum(fpts)/length(unique(gid)),2)) %>%
+              select(opp,year,fpa), group_by(TE,team,year,opp, gid) %>%
+              summarize(fps = sum(fpts)), by = c("opp", "year")) %>%
+    mutate(TEaFPS = fps-fpa) %>%
+    select(team, year, TEaFPS) %>%
+    group_by(team, year) %>%
+    summarize(TEaFPS = round(mean(TEaFPS),2)),
+  full_join(group_by(TE,team,year) %>%
+              summarize(fps = round(sum(fpts)/length(unique(gid)),2)) %>%
+              select(team,year,fps), group_by(TE, team, opp,year, gid) %>%
+              summarize(fpa = sum(fpts)), by = c("team", "year")) %>%
+    mutate(TEaFPA = fpa-fps) %>%
+    select(opp, year, TEaFPA) %>%
+    group_by(opp, year) %>%
+    summarize(TEaFPA = round(mean(TEaFPA),2)), by = c("year", "team" = "opp"))
+
+DSTaFPA <- full_join(
+  full_join(group_by(DST, opp,year) %>%
+              summarize(fpa = round(sum(fpts)/length(unique(gid)),2)) %>%
+              select(opp,year,fpa), group_by(DST,team,year,opp, gid) %>%
+              summarize(fps = sum(fpts)), by = c("opp", "year")) %>%
+    mutate(DSTaFPS = fps-fpa) %>%
+    select(team, year, DSTaFPS) %>%
+    group_by(team, year) %>%
+    summarize(DSTaFPS = round(mean(DSTaFPS),2)),
+  full_join(group_by(DST,team,year) %>%
+              summarize(fps = round(sum(fpts)/length(unique(gid)),2)) %>%
+              select(team,year,fps), group_by(DST, team, opp,year, gid) %>%
+              summarize(fpa = sum(fpts)), by = c("team", "year")) %>%
+    mutate(DSTaFPA = fpa-fps) %>%
+    select(opp, year, DSTaFPA) %>%
+    group_by(opp, year) %>%
+    summarize(DSTaFPA = round(mean(DSTaFPA),2)), by = c("year", "team" = "opp"))
+
+aFPA <- left_join(left_join(left_join(left_join(QBaFPA,RBaFPA, by = c("team", "year")),WRaFPA, by = c("team", "year")),TEaFPA, by = c("team", "year")),
+                  DSTaFPA, by = c("team", "year"))
+
+rm(QBaFPA,RBaFPA,WRaFPA,TEaFPA,DSTaFPA)
