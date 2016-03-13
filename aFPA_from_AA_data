@@ -92,7 +92,7 @@ teams <- data.frame(old = c("ARI", "ATL", "BAL", "BUF", "CAR", "CHI", "CIN", "CL
 
 QB <- left_join(offense, mutate(sack, player = qb, gid = play$gid[match(pid, play$pid)]) %>%
                   group_by(gid, player) %>%
-                  summarize(sack = length(ydsl), ydsl = sum(ydsl)) %>%
+                  summarise(sack = length(ydsl), ydsl = sum(ydsl)) %>%
                   ungroup(), by = c("player","gid")) %>%
   replace(is.na(.), 0) %>%
   mutate(name = paste((player$fname[match(player, player$player)]), (player$lname[match(player, player$player)]), sep = " "),
@@ -188,93 +188,93 @@ DST <- left_join(group_by(defense, team, gid, year) %>%
 
 QBaFPA<- full_join(
   full_join(group_by(QB, opp,year) %>%
-              summarize(fpa = round(sum(fpts)/length(unique(gid)),2)) %>%
+              summarise(fpa = round(sum(fpts)/length(unique(gid)),2)) %>%
               select(opp,year,fpa), group_by(QB,team,year,opp, gid) %>%
-              summarize(fps = sum(fpts)), by = c("opp", "year")) %>%
+              summarise(fps = sum(fpts)), by = c("opp", "year")) %>%
     mutate(QBaFPS = fps-fpa) %>%
     select(team, year, QBaFPS) %>%
     group_by(team, year) %>%
-    summarize(QBaFPS = round(mean(QBaFPS),2)),
+    summarise(QBaFPS = round(mean(QBaFPS),2)),
   full_join(group_by(QB,team,year) %>%
-              summarize(fps = round(sum(fpts)/length(unique(gid)),2)) %>%
+              summarise(fps = round(sum(fpts)/length(unique(gid)),2)) %>%
               select(team,year,fps), group_by(QB, team, opp,year, gid) %>%
-              summarize(fpa = sum(fpts)), by = c("team", "year")) %>%
+              summarise(fpa = sum(fpts)), by = c("team", "year")) %>%
     mutate(QBaFPA = fpa-fps) %>%
     select(opp, year, QBaFPA) %>%
     group_by(opp, year) %>%
-    summarize(QBaFPA = round(mean(QBaFPA),2)), by = c("year", "team" = "opp"))
+    summarise(QBaFPA = round(mean(QBaFPA),2)), by = c("year", "team" = "opp"))
 
 RBaFPA <- full_join(
   full_join(group_by(RB, opp,year) %>%
-              summarize(fpa = round(sum(fpts)/length(unique(gid)),2)) %>%
+              summarise(fpa = round(sum(fpts)/length(unique(gid)),2)) %>%
               select(opp,year,fpa), group_by(RB,team,year,opp, gid) %>%
-              summarize(fps = sum(fpts)), by = c("opp", "year")) %>%
+              summarise(fps = sum(fpts)), by = c("opp", "year")) %>%
     mutate(RBaFPS = fps-fpa) %>%
     select(team, year, RBaFPS) %>%
     group_by(team, year) %>%
-    summarize(RBaFPS = round(mean(RBaFPS),2)),
+    summarise(RBaFPS = round(mean(RBaFPS),2)),
   full_join(group_by(RB,team,year) %>%
-              summarize(fps = round(sum(fpts)/length(unique(gid)),2)) %>%
+              summarise(fps = round(sum(fpts)/length(unique(gid)),2)) %>%
               select(team,year,fps), group_by(RB, team, opp,year, gid) %>%
-              summarize(fpa = sum(fpts)), by = c("team", "year")) %>%
+              summarise(fpa = sum(fpts)), by = c("team", "year")) %>%
     mutate(RBaFPA = fpa-fps) %>%
     select(opp, year, RBaFPA) %>%
     group_by(opp, year) %>%
-    summarize(RBaFPA = round(mean(RBaFPA),2)), by = c("year", "team" = "opp"))
+    summarise(RBaFPA = round(mean(RBaFPA),2)), by = c("year", "team" = "opp"))
 
 WRaFPA <- full_join(
   full_join(group_by(WR, opp,year) %>%
-              summarize(fpa = round(sum(fpts)/length(unique(gid)),2)) %>%
+              summarise(fpa = round(sum(fpts)/length(unique(gid)),2)) %>%
               select(opp,year,fpa), group_by(WR,team,year,opp, gid) %>%
-              summarize(fps = sum(fpts)), by = c("opp", "year")) %>%
+              summarise(fps = sum(fpts)), by = c("opp", "year")) %>%
     mutate(WRaFPS = fps-fpa) %>%
     select(team, year, WRaFPS) %>%
     group_by(team, year) %>%
-    summarize(WRaFPS = round(mean(WRaFPS),2)),
+    summarise(WRaFPS = round(mean(WRaFPS),2)),
   full_join(group_by(WR,team,year) %>%
-              summarize(fps = round(sum(fpts)/length(unique(gid)),2)) %>%
+              summarise(fps = round(sum(fpts)/length(unique(gid)),2)) %>%
               select(team,year,fps), group_by(WR, team, opp,year, gid) %>%
-              summarize(fpa = sum(fpts)), by = c("team", "year")) %>%
+              summarise(fpa = sum(fpts)), by = c("team", "year")) %>%
     mutate(WRaFPA = fpa-fps) %>%
     select(opp, year, WRaFPA) %>%
     group_by(opp, year) %>%
-    summarize(WRaFPA = round(mean(WRaFPA),2)), by = c("year", "team" = "opp"))
+    summarise(WRaFPA = round(mean(WRaFPA),2)), by = c("year", "team" = "opp"))
 
 TEaFPA <- full_join(
   full_join(group_by(TE, opp,year) %>%
-              summarize(fpa = round(sum(fpts)/length(unique(gid)),2)) %>%
+              summarise(fpa = round(sum(fpts)/length(unique(gid)),2)) %>%
               select(opp,year,fpa), group_by(TE,team,year,opp, gid) %>%
-              summarize(fps = sum(fpts)), by = c("opp", "year")) %>%
+              summarise(fps = sum(fpts)), by = c("opp", "year")) %>%
     mutate(TEaFPS = fps-fpa) %>%
     select(team, year, TEaFPS) %>%
     group_by(team, year) %>%
-    summarize(TEaFPS = round(mean(TEaFPS),2)),
+    summarise(TEaFPS = round(mean(TEaFPS),2)),
   full_join(group_by(TE,team,year) %>%
-              summarize(fps = round(sum(fpts)/length(unique(gid)),2)) %>%
+              summarise(fps = round(sum(fpts)/length(unique(gid)),2)) %>%
               select(team,year,fps), group_by(TE, team, opp,year, gid) %>%
-              summarize(fpa = sum(fpts)), by = c("team", "year")) %>%
+              summarise(fpa = sum(fpts)), by = c("team", "year")) %>%
     mutate(TEaFPA = fpa-fps) %>%
     select(opp, year, TEaFPA) %>%
     group_by(opp, year) %>%
-    summarize(TEaFPA = round(mean(TEaFPA),2)), by = c("year", "team" = "opp"))
+    summarise(TEaFPA = round(mean(TEaFPA),2)), by = c("year", "team" = "opp"))
 
 DSTaFPA <- full_join(
   full_join(group_by(DST, opp,year) %>%
-              summarize(fpa = round(sum(fpts)/length(unique(gid)),2)) %>%
+              summarise(fpa = round(sum(fpts)/length(unique(gid)),2)) %>%
               select(opp,year,fpa), group_by(DST,team,year,opp, gid) %>%
-              summarize(fps = sum(fpts)), by = c("opp", "year")) %>%
+              summarise(fps = sum(fpts)), by = c("opp", "year")) %>%
     mutate(DSTaFPS = fps-fpa) %>%
     select(team, year, DSTaFPS) %>%
     group_by(team, year) %>%
-    summarize(DSTaFPS = round(mean(DSTaFPS),2)),
+    summarise(DSTaFPS = round(mean(DSTaFPS),2)),
   full_join(group_by(DST,team,year) %>%
-              summarize(fps = round(sum(fpts)/length(unique(gid)),2)) %>%
+              summarise(fps = round(sum(fpts)/length(unique(gid)),2)) %>%
               select(team,year,fps), group_by(DST, team, opp,year, gid) %>%
-              summarize(fpa = sum(fpts)), by = c("team", "year")) %>%
+              summarise(fpa = sum(fpts)), by = c("team", "year")) %>%
     mutate(DSTaFPA = fpa-fps) %>%
     select(opp, year, DSTaFPA) %>%
     group_by(opp, year) %>%
-    summarize(DSTaFPA = round(mean(DSTaFPA),2)), by = c("year", "team" = "opp"))
+    summarise(DSTaFPA = round(mean(DSTaFPA),2)), by = c("year", "team" = "opp"))
 
 aFPA <- left_join(left_join(left_join(left_join(QBaFPA,RBaFPA, by = c("team", "year")),WRaFPA, by = c("team", "year")),TEaFPA, by = c("team", "year")),
                   DSTaFPA, by = c("team", "year"))
