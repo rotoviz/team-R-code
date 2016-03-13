@@ -45,30 +45,23 @@ dbDisconnect(mydb)
 rm(mydb)
 
 ## Get Teams Points Per Game
+get_weekly_scoring <- function(week.filter) {
+  data <- filter(weeklyscoring, week < week.filter) %>%
+    group_by(team, year) %>%
+    summarise(pts.game = round(mean(pts),2)) %>%
+    mutate(week = week.filter) %>%
+    select(team, year, week, pts.game)
+
+  return(data)
+}
 
 weeklyscoring <- mutate(team, team = tname, year = game$seas[match(gid, game$gid)], week = game$wk[match(gid, game$gid)]) %>%
   select(team, year, gid, week, pts) %>%
   filter(week <= 17)
 
-get_weekly_scoring <- function() {
-  for (i in 1:17){
-    a <- filter(weeklyscoring, week < i) %>%
-      group_by(team, year) %>%
-      summarise(pts.game = round(mean(pts),2)) %>%
-      mutate(week = i) %>%
-      select(team, year, week, pts.game)
-    assign(paste("a", i, sep = ""), a)
-  }
-  
-  data <- bind_rows(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17)
-  
-  rm(a, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, i)
-  
-  return(data)
-  
-}
-
-weeklyscoring <- get_weekly_scoring()
+weeklyscoring <- weeklyscoring$week %>% unique() %>%
+  purrr::map(function(x) get_weekly_scoring(week.filter = x)) %>%
+  compact %>% bind_rows
 
 ## Join Offense Tables
 
