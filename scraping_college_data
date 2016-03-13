@@ -1,0 +1,62 @@
+## Load Packages
+packages <- c("dplyr", "XML", "tidyr", "purrr", "stringr")
+options(warn = -1)
+lapply(packages, library, character.only = T)
+rm(packages)
+
+## Scraping Function
+get_data <- function(team) {
+  url <- paste0("http://www.footballstudyhall.com/pages/2015-", team, "-advanced-statistical-profile")
+  
+  schedule.results <- readHTMLTable(url, which = 1, header = TRUE, skip.rows = 1)
+  
+  rankings <- readHTMLTable(url, which = 2, header = TRUE)
+  
+  five.factors <- readHTMLTable(url, which = 3, header = TRUE, skip.rows = c(1, 7))
+  row.names(five.factors) <- as.character(five.factors[,1])
+  five.factors <- five.factors[,-1]
+  
+  rushing <- readHTMLTable(url, which = 4, header = TRUE, skip.rows = 1)
+  row.names(rushing) <- as.character(rushing[,1])
+  rushing <- rushing[,-1]
+  
+  individual.rushing <- readHTMLTable(url, which = 5, header = TRUE) %>% na.omit
+  
+  passing <- readHTMLTable(url, which = 6, header = TRUE, skip.rows = 1)
+  row.names(passing) <- as.character(passing[,1])
+  passing <- passing[,-1]
+  
+  individual.passing <- readHTMLTable(url, which = 7, header = TRUE) %>% na.omit
+  
+  individual.receiving <- readHTMLTable(url, which = 8, header = TRUE) %>% na.omit
+  
+  offensive.footprint <- readHTMLTable(url, which = 12, header = TRUE, skip.rows = 2)
+  row.names(offensive.footprint) <- as.character(offensive.footprint[,1])
+  offensive.footprint <- offensive.footprint[,-1]
+  
+  defensive.footprint <- readHTMLTable(url, which = 13, header = TRUE, skip.rows = 2)
+  row.names(defensive.footprint) <- as.character(defensive.footprint[,1])
+  defensive.footprint <- defensive.footprint[,-1]
+  
+  individual.defensive <- readHTMLTable(url, which = 14, header = TRUE) %>% na.omit
+  
+  data <- list(schedule.results, rankings, five.factors, rushing, individual.rushing, passing, individual.passing, 
+               individual.receiving, offensive.footprint, defensive.footprint, individual.defensive)
+  names(data) <- c("schedule.results", "rankings", "five.factors", "rushing", "individual.rushing", "passing", "individual.passing", 
+             "individual.receiving", "offensive.footprint", "defensive.footprint", "individual.defensive")
+  
+  message(paste0("You got the 2015 ", team, " Advanced Statistical Profile"))
+  names(data)
+  return(data)
+}
+
+## Get List of Teams
+base_url <- "http://www.footballstudyhall.com/pages/2015-college-football-advanced-statistical-profiles"
+teams <- readHTMLTable(base_url, as.data.frame = TRUE, header = TRUE) %>% 
+  .$`NULL` %>% .$Team %>% as.character() %>% str_replace_all(" ", "-")
+
+## Get Data in Large List
+data <- teams %>% unique() %>%
+  purrr::map(function(x) get_data(team = x))
+  
+names(data) <- teams
