@@ -30,8 +30,23 @@ get_data <- function(team) {
   
   individual.receiving <- readHTMLTable(url, which = 8, header = TRUE) %>% na.omit
   
-  data <- list(schedule.results, rankings, five.factors, rushing, individual.rushing, passing, individual.passing, individual.receiving)
+  offensive.footprint <- readHTMLTable(url, which = 12, header = TRUE, skip.rows = 2)
+  row.names(offensive.footprint) <- as.character(offensive.footprint[,1])
+  offensive.footprint <- offensive.footprint[,-1]
+  
+  defensive.footprint <- readHTMLTable(url, which = 13, header = TRUE, skip.rows = 2)
+  row.names(defensive.footprint) <- as.character(defensive.footprint[,1])
+  defensive.footprint <- defensive.footprint[,-1]
+  
+  individual.defensive <- readHTMLTable(url, which = 14, header = TRUE) %>% na.omit
+  
+  data <- list(schedule.results, rankings, five.factors, rushing, individual.rushing, passing, individual.passing, 
+               individual.receiving, offensive.footprint, defensive.footprint, individual.defensive)
+  names(data) <- c("schedule.results", "rankings", "five.factors", "rushing", "individual.rushing", "passing", "individual.passing", 
+             "individual.receiving", "offensive.footprint", "defensive.footprint", "individual.defensive")
+  
   message(paste0("You got the 2015 ", team, " Advanced Statistical Profile"))
+  names(data)
   return(data)
 }
 
